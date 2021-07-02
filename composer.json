@@ -1,0 +1,22 @@
+{
+	"name": "rajib/plugin-scaffold",
+	"description": "A fully object oriented boilerplate for WordPress Plugin created by the developer for the developers.",
+	"type": "wordpress-plugin",
+	"license": "GPLv2",
+	"authors": [
+		{
+			"name": "Rajib Dey",
+			"email": "raj.kuet@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Plugin\\Scaffold\\": "includes/",
+			"files": [
+				"/includes/funstions.php"
+			]
+		}
+	}
+}
