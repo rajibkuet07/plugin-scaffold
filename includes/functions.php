@@ -1,14 +1,18 @@
 <?php
 
+namespace Plugin\Scaffold;
+
 /**
- * Get the option
+ * Get option values for this plugin
+ * Main option is 'plugin_name' and its an array
+ * All other options are saved as the item of the array
  *
  * @param string $name
  * @param mixed $default
  * @return void
  */
 function get_option( $name, $default = false ) {
-	$option = get_option( 'plugin_scaffold' );
+	$option = \get_option( 'plugin_scaffold' );
 
 	if ( false === $option ) return $default;
 
@@ -23,8 +27,9 @@ function get_option( $name, $default = false ) {
  * @return void
  */
 function update_option( $name, $value ) {
-	$option = get_option( 'plugin_scaffold' );
+	$option = \get_option( 'plugin_scaffold' );
 	$option = ( false === $option ) ? array() : (array) $option;
 	$option = array_merge( $option, array( $name => $value ) );
-	update_option( 'plugin_scaffold', $option );
+
+	\update_option( 'plugin_scaffold', $option );
 }

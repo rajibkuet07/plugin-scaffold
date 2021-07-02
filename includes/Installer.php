@@ -34,7 +34,7 @@ class Installer {
 		// save the installation time for future use
 		$installed = get_option( 'installed', false );
 
-		! $installed || update_option( 'installed', time() );
+		$installed || update_option( 'installed', time() );
 
 		// save the version of the plugin as option
 		$prev_version = get_option( 'version', '0' );

@@ -13,10 +13,10 @@
 	"require": {},
 	"autoload": {
 		"psr-4": {
-			"Plugin\\Scaffold\\": "includes/",
-			"files": [
-				"/includes/funstions.php"
-			]
-		}
+			"Plugin\\Scaffold\\": "includes/"
+		},
+		"files": [
+			"includes/functions.php"
+		]
 	}
 }
