@@ -10,8 +10,9 @@
 .env
 
 node_modules/
-*/**/*.lock
-*/**/*.log
-.zip
+vendor/
 
+*.lock
+*.log
+.zip
 .vscode
