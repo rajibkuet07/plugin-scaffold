@@ -68,14 +68,14 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
      * @return void
      */
     private static function define_constants() {
-      self::define( 'PLUGIN_SCAFFOLD_VERSION', self::version );
-      self::define( 'PLUGIN_SCAFFOLD_FILE', __FILE__ );
-      self::define( 'PLUGIN_SCAFFOLD_DIR', untrailingslashit( __DIR__ ) );
-      self::define( 'PLUGIN_SCAFFOLD_BASENAME', plugin_basename( PLUGIN_SCAFFOLD_FILE ) );
-      self::define( 'PLUGIN_SCAFFOLD_NAME', trim( dirname( PLUGIN_SCAFFOLD_BASENAME ), '/' ) );
-      self::define( 'PLUGIN_SCAFFOLD_URL', untrailingslashit( plugins_url( '', PLUGIN_SCAFFOLD_FILE ) ) );
-      self::define( 'PLUGIN_SCAFFOLD_INC_DIR', __DIR__ . '/includes' );
-      self::define( 'PLUGIN_SCAFFOLD_ASSETS', trailingslashit( PLUGIN_SCAFFOLD_URL ) . 'assets' );
+			defined( 'PLUGIN_SCAFFOLD_VERSION' ) || define( 'PLUGIN_SCAFFOLD_VERSION', self::version );
+			defined( 'PLUGIN_SCAFFOLD_FILE' ) || define( 'PLUGIN_SCAFFOLD_FILE', __FILE__ );
+			defined( 'PLUGIN_SCAFFOLD_DIR' ) || define( 'PLUGIN_SCAFFOLD_DIR', untrailingslashit( __DIR__ ) );
+			defined( 'PLUGIN_SCAFFOLD_BASENAME' ) || define( 'PLUGIN_SCAFFOLD_BASENAME', plugin_basename( PLUGIN_SCAFFOLD_FILE ) );
+			defined( 'PLUGIN_SCAFFOLD_NAME' ) || define( 'PLUGIN_SCAFFOLD_NAME', trim( dirname( PLUGIN_SCAFFOLD_BASENAME ), '/' ) );
+			defined( 'PLUGIN_SCAFFOLD_URL' ) || define( 'PLUGIN_SCAFFOLD_URL', untrailingslashit( plugins_url( '', PLUGIN_SCAFFOLD_FILE ) ) );
+			defined( 'PLUGIN_SCAFFOLD_INC_DIR' ) || define( 'PLUGIN_SCAFFOLD_INC_DIR', PLUGIN_SCAFFOLD_DIR . '/includes' );
+			defined( 'PLUGIN_SCAFFOLD_ASSETS' ) || define( 'PLUGIN_SCAFFOLD_ASSETS', trailingslashit( PLUGIN_SCAFFOLD_URL ) . 'assets' );
     }
 
     /**
@@ -93,7 +93,7 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
     }
 
     /**
-     * Do the necessary things on plugin activation
+     * Do the necessary tasks on plugin activation
      *
      * @return void
      */
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
     }
 
     /**
-     * Do the necessary things on plugin deactivation
+     * Do the necessary tasks on plugin deactivation
      *
      * @return void
      */

@@ -7,6 +7,7 @@ class Admin {
    * Constractor of the Admin class
    */
   public function __construct() {
-    new Admin\Menu();
+		$plugin_pages = new Admin\Plugin_Menu_Pages();
+    new Admin\Menu( $plugin_pages );
   }
 }

@@ -2,11 +2,15 @@
 
 namespace Plugin\Scaffold;
 
+use Plugin\Scaffold\Traits\Options;
+
 /**
  * Installer class
  * Does the stuffs on plugin activation
  */
 class Installer {
+	use Options;
+
 	private $required_php_version = '5.6.0';
 
 	/**
@@ -17,7 +21,7 @@ class Installer {
 			$this->abort_activation();
 		}
 
-		$this->version_control();
+		$this->track_version();
 
 		$this->install_tables();
 	}
@@ -28,21 +32,17 @@ class Installer {
 	 *
 	 * @return void
 	 */
-	private function version_control() {
-		// check php version here
-
+	private function track_version() {
 		// save the installation time for future use
-		$installed = get_option( 'installed', false );
+		$installed = $this->get_option( 'installed', false );
 
-		$installed || update_option( 'installed', time() );
+		$installed || $this->update_option( 'installed', time() );
 
 		// save the version of the plugin as option
-		$prev_version = get_option( 'version', '0' );
+		$prev_version = $this->get_option( 'version', '0' );
 		$new_version  = PLUGIN_SCAFFOLD_VERSION;
 
-		if ( $prev_version === $new_version ) return;
-
-		update_option( 'version', $new_version );
+		( $prev_version === $new_version ) || $this->update_option( 'version', $new_version );
 	}
 
 	/**
@@ -60,8 +60,8 @@ class Installer {
 	 * @return boolean
 	 */
 	private function is_valid_php_version() {
-		$php_version   = phpversion();
-		$php_compat    = version_compare( $php_version, $this->required_php_version, '>=' );
+		$php_version  = phpversion();
+		$php_compat   = version_compare( $php_version, $this->required_php_version, '>=' );
 
 		return $php_compat;
 	}
@@ -71,7 +71,7 @@ class Installer {
 	 *
 	 * @return void
 	 */
-	public function abort_activation() {
+	private function abort_activation() {
 		$php_version   = phpversion();
 
 		// translators: %s: URL to Update PHP page.
