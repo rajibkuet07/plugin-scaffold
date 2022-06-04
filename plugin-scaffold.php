@@ -34,7 +34,7 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
     const version             = '1.0.0';
 
     /**
-     * Class contructor
+     * Class constructor
      * Private. So object can not be created using new keyword.
      */
     private function __construct() {
@@ -67,15 +67,15 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
      *
      * @return void
      */
-    private static function define_constants() {
-			defined( 'PLUGIN_SCAFFOLD_VERSION' ) || define( 'PLUGIN_SCAFFOLD_VERSION', self::version );
-			defined( 'PLUGIN_SCAFFOLD_FILE' ) || define( 'PLUGIN_SCAFFOLD_FILE', __FILE__ );
-			defined( 'PLUGIN_SCAFFOLD_DIR' ) || define( 'PLUGIN_SCAFFOLD_DIR', untrailingslashit( __DIR__ ) );
-			defined( 'PLUGIN_SCAFFOLD_BASENAME' ) || define( 'PLUGIN_SCAFFOLD_BASENAME', plugin_basename( PLUGIN_SCAFFOLD_FILE ) );
-			defined( 'PLUGIN_SCAFFOLD_NAME' ) || define( 'PLUGIN_SCAFFOLD_NAME', trim( dirname( PLUGIN_SCAFFOLD_BASENAME ), '/' ) );
-			defined( 'PLUGIN_SCAFFOLD_URL' ) || define( 'PLUGIN_SCAFFOLD_URL', untrailingslashit( plugins_url( '', PLUGIN_SCAFFOLD_FILE ) ) );
-			defined( 'PLUGIN_SCAFFOLD_INC_DIR' ) || define( 'PLUGIN_SCAFFOLD_INC_DIR', PLUGIN_SCAFFOLD_DIR . '/includes' );
-			defined( 'PLUGIN_SCAFFOLD_ASSETS' ) || define( 'PLUGIN_SCAFFOLD_ASSETS', trailingslashit( PLUGIN_SCAFFOLD_URL ) . 'assets' );
+    private function define_constants() {
+			$this->define( 'PLUGIN_SCAFFOLD_VERSION', self::version );
+			$this->define( 'PLUGIN_SCAFFOLD_FILE', __FILE__ );
+			$this->define( 'PLUGIN_SCAFFOLD_DIR', untrailingslashit( __DIR__ ) );
+			$this->define( 'PLUGIN_SCAFFOLD_BASENAME', plugin_basename( __FILE__ ) );
+			$this->define( 'PLUGIN_SCAFFOLD_NAME', trim( dirname( plugin_basename( __FILE__ ) ), '/' ) );
+			$this->define( 'PLUGIN_SCAFFOLD_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
+			$this->define( 'PLUGIN_SCAFFOLD_INC_DIR', untrailingslashit( __DIR__ ) . '/includes' );
+			$this->define( 'PLUGIN_SCAFFOLD_ASSETS', trailingslashit( untrailingslashit( plugins_url( '', __FILE__ ) ) ) . 'assets' );
     }
 
     /**
@@ -83,10 +83,10 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
      *
      * @param string $name
      * @param string|bool $value
-     * 
+     *
      * @return void
      */
-    private static function define( $name, $value ) {
+    private function define( $name, $value ) {
       if ( ! defined( $name ) ) {
           define( $name, $value );
       }
@@ -145,7 +145,7 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
 }
 
 /**
- * Inititalize the main plugin class
+ * Initialize the main plugin class
  *
  * @return \Plugin_Scaffold
  */
