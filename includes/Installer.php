@@ -87,7 +87,7 @@ class Installer {
 			$this->required_php_version,
 			$php_version
 		) . $php_update_message;
-		
+
 		exit( $message );
 	}
 }

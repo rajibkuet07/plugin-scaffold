@@ -68,28 +68,14 @@ if ( ! class_exists( 'Plugin_Scaffold' ) ) {
      * @return void
      */
     private function define_constants() {
-			$this->define( 'PLUGIN_SCAFFOLD_VERSION', self::version );
-			$this->define( 'PLUGIN_SCAFFOLD_FILE', __FILE__ );
-			$this->define( 'PLUGIN_SCAFFOLD_DIR', untrailingslashit( __DIR__ ) );
-			$this->define( 'PLUGIN_SCAFFOLD_BASENAME', plugin_basename( __FILE__ ) );
-			$this->define( 'PLUGIN_SCAFFOLD_NAME', trim( dirname( plugin_basename( __FILE__ ) ), '/' ) );
-			$this->define( 'PLUGIN_SCAFFOLD_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
-			$this->define( 'PLUGIN_SCAFFOLD_INC_DIR', untrailingslashit( __DIR__ ) . '/includes' );
-			$this->define( 'PLUGIN_SCAFFOLD_ASSETS', trailingslashit( untrailingslashit( plugins_url( '', __FILE__ ) ) ) . 'assets' );
-    }
-
-    /**
-     * Define a constant after checking if it is not exist
-     *
-     * @param string $name
-     * @param string|bool $value
-     *
-     * @return void
-     */
-    private function define( $name, $value ) {
-      if ( ! defined( $name ) ) {
-          define( $name, $value );
-      }
+			defined( 'PLUGIN_SCAFFOLD_VERSION' ) || define( 'PLUGIN_SCAFFOLD_VERSION', self::version );
+			defined( 'PLUGIN_SCAFFOLD_FILE' ) || define( 'PLUGIN_SCAFFOLD_FILE', __FILE__ );
+			defined( 'PLUGIN_SCAFFOLD_DIR' ) || define( 'PLUGIN_SCAFFOLD_DIR', untrailingslashit( __DIR__ ) );
+			defined( 'PLUGIN_SCAFFOLD_BASENAME' ) || define( 'PLUGIN_SCAFFOLD_BASENAME', plugin_basename( PLUGIN_SCAFFOLD_FILE ) );
+			defined( 'PLUGIN_SCAFFOLD_NAME' ) || define( 'PLUGIN_SCAFFOLD_NAME', trim( dirname( PLUGIN_SCAFFOLD_BASENAME ), '/' ) );
+			defined( 'PLUGIN_SCAFFOLD_URL' ) || define( 'PLUGIN_SCAFFOLD_URL', untrailingslashit( plugins_url( '', PLUGIN_SCAFFOLD_FILE ) ) );
+			defined( 'PLUGIN_SCAFFOLD_INC_DIR' ) || define( 'PLUGIN_SCAFFOLD_INC_DIR', PLUGIN_SCAFFOLD_DIR . '/includes' );
+			defined( 'PLUGIN_SCAFFOLD_ASSETS' ) || define( 'PLUGIN_SCAFFOLD_ASSETS', trailingslashit( PLUGIN_SCAFFOLD_URL ) . 'assets' );
     }
 
     /**
